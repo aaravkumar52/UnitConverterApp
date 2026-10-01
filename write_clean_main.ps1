@@ -1,3 +1,4 @@
+$code = @'
 package com.example.unitconverter
 
 import android.os.Bundle
@@ -23,7 +24,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -165,17 +165,7 @@ fun UnitConverter() {
                         Toast.makeText(context, "Enter Numeric Value", Toast.LENGTH_SHORT).show()
                     }
                 },
-                label = { Text("Enter Value", color = Color.Black) },
-                textStyle = TextStyle(color = Color.Black),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedTextColor = Color.Black,
-                    unfocusedTextColor = Color.Black,
-                    focusedLabelColor = Color.Black,
-                    unfocusedLabelColor = Color.Black,
-                    focusedBorderColor = Color.Black,
-                    unfocusedBorderColor = Color.Black,
-                    cursorColor = Color.Black
-                )
+                label = { Text("Enter Value") }
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -221,9 +211,9 @@ fun UnitConverter() {
                         onClick = {
                             Expanded = false
                             unitCategory = "Temperature"
-                            inputUnit = "Celsius(Â°C)"
-                            outputUnit = "Fahrenheit(Â°F)"
-                            resultUnit = "Â°F"
+                            inputUnit = "Celsius(°C)"
+                            outputUnit = "Fahrenheit(°F)"
+                            resultUnit = "°F"
                             convertUnits()
                         }
                     )
@@ -553,18 +543,18 @@ fun UnitConverter() {
                         }
                         DropdownMenu(expanded = iExpanded, onDismissRequest = { iExpanded = false }) {
                             DropdownMenuItem(
-                                text = { Text("Celsius(Â°C)") },
+                                text = { Text("Celsius(°C)") },
                                 onClick = {
                                     iExpanded = false
-                                    inputUnit = "Celsius(Â°C)"
+                                    inputUnit = "Celsius(°C)"
                                     convertUnits()
                                 }
                             )
                             DropdownMenuItem(
-                                text = { Text("Fahrenheit(Â°F)") },
+                                text = { Text("Fahrenheit(°F)") },
                                 onClick = {
                                     iExpanded = false
-                                    inputUnit = "Fahrenheit(Â°F)"
+                                    inputUnit = "Fahrenheit(°F)"
                                     convertUnits()
                                 }
                             )
@@ -589,20 +579,20 @@ fun UnitConverter() {
                         }
                         DropdownMenu(expanded = oExpanded, onDismissRequest = { oExpanded = false }) {
                             DropdownMenuItem(
-                                text = { Text("Celsius(Â°C)") },
+                                text = { Text("Celsius(°C)") },
                                 onClick = {
                                     oExpanded = false
-                                    outputUnit = "Celsius(Â°C)"
-                                    resultUnit = "Â°C"
+                                    outputUnit = "Celsius(°C)"
+                                    resultUnit = "°C"
                                     convertUnits()
                                 }
                             )
                             DropdownMenuItem(
-                                text = { Text("Fahrenheit(Â°F)") },
+                                text = { Text("Fahrenheit(°F)") },
                                 onClick = {
                                     oExpanded = false
-                                    outputUnit = "Fahrenheit(Â°F)"
-                                    resultUnit = "Â°F"
+                                    outputUnit = "Fahrenheit(°F)"
+                                    resultUnit = "°F"
                                     convertUnits()
                                 }
                             )
@@ -714,3 +704,8 @@ fun UnitConverterPreview() {
         UnitConverter()
     }
 }
+'@
+
+$target = "app\src\main\java\com\example\unitconverter\MainActivity.kt"
+[System.IO.File]::WriteAllText($target, $code, [System.Text.Encoding]::UTF8)
+Write-Output "Written $($code.Length) characters to $target"
